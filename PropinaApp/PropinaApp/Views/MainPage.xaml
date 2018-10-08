@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PropinaApp"
+             x:Class="PropinaApp.Views.MainPage"
+             xmlns:vm="clr-namespace:PropinaApp.ViewModels">
+    <ContentPage.BindingContext>
+        <vm:MainPageViewModel />
+    </ContentPage.BindingContext>
+    <TableView HasUnevenRows="True">
+        <TableRoot>
+            <TableSection Title="Datos">
+                <EntryCell Label="Total"
+                           Keyboard="Numeric"
+                           Text="{Binding Total}"/>
+                <EntryCell Label="Propina (%)"
+                           Keyboard="Numeric"
+                           Text="{Binding Propina}"/>
+                <EntryCell Label="# de personas"
+                           Keyboard="Numeric"
+                           Text="{Binding Personas}"/>
+                <ViewCell>
+                    <StackLayout>
+                        <Button Text="¡CALCULAR!"
+                                Command="{Binding CalcularCommand}"/>
+                        <Button Text="LIMPIAR"
+                                TextColor="Red"
+                                Command="{Binding LimpiarCommand}"/>
+                    </StackLayout>
+                    
+                </ViewCell>
+            </TableSection>
+            <TableSection Title="Resultado">
+                <TextCell Text="Propina:"
+                          Detail="{Binding ValPropina, StringFormat='${0:0.00}'}"/>
+                <TextCell Text="Total:"
+                          Detail="{Binding ValTotal, StringFormat='${0:0.00}'}"/>
+                <TextCell Text="Propina por persona:"
+                          Detail="{Binding PropinaPorPersona, StringFormat='${0:0.00}'}"/>
+                <TextCell Text="Total por persona:"
+                          Detail="{Binding TotalPorPersona, StringFormat='${0:0.00}'}"/>
+
+            </TableSection>
+        </TableRoot>
+    </TableView>
+</ContentPage>
